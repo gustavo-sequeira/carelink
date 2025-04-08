@@ -1,2 +1,2 @@
 # carelink
-Conectando profissionais em saúde, garantindo o cuidado contínuo 
+Conectando profissionais da saúde, garantindo o cuidado contínuo 
