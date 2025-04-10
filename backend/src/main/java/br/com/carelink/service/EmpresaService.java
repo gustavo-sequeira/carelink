@@ -53,6 +53,19 @@ public class EmpresaService {
         return repository.findAll(pageable).map(this::toDTO);
     }
 
+    public EmpresaDTO alterar(Long id, EmpresaDTO dto) {
+        Empresa empresa =  repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Empresa não encontrada"));
+
+            empresa.setRazaoSocial(dto.getRazaoSocial());
+            empresa.setNomeFantasia(dto.getNomeFantasia());
+            empresa.setCnpj(dto.getCnpj());
+
+        Empresa salva = repository.save(empresa);
+
+        return toDTO(salva);
+    }
+
     private EmpresaDTO toDTO(Empresa empresa) {
         return EmpresaDTO.builder()
                 .id(empresa.getId())
