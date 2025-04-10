@@ -6,6 +6,8 @@ import br.com.carelink.entity.Empresa;
 import br.com.carelink.repository.EmpresaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,6 +47,10 @@ public class EmpresaService {
             throw new EntityNotFoundException("Empresa não encontrada");
         }
         repository.deleteById(id);
+    }
+
+    public Page<EmpresaDTO> listarPaginado(Pageable pageable) {
+        return repository.findAll(pageable).map(this::toDTO);
     }
 
     private EmpresaDTO toDTO(Empresa empresa) {

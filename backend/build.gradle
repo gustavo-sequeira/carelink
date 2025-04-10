@@ -33,14 +33,17 @@ dependencies {
 	// Validação Jakarta (Bean Validation)
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 
-	// Se estiver usando Spring Boot, inclua também o Hibernate Validator (implementação)
+	// Hibernate Validator (implementação)
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
 
 	// Swagger/OpenAPI com springdoc-openapi
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 
-	//validação de CNPJ
+	// Validação de CNPJ
 	implementation 'br.com.caelum.stella:caelum-stella-core:2.1.6'
+
+	// Teste unitário
+	implementation 'org.mockito:mockito-core:5.14.0'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

@@ -4,6 +4,9 @@ import br.com.carelink.dto.EmpresaDTO;
 import br.com.carelink.service.EmpresaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +27,9 @@ public class EmpresaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EmpresaDTO>> listar() {
-        return ResponseEntity.ok(service.listarTodas());
+    public ResponseEntity<Page<EmpresaDTO>> listar(@PageableDefault(size = 10, sort = "razaoSocial") Pageable pageable) {
+        Page<EmpresaDTO> pagina = service.listarPaginado(pageable);
+        return ResponseEntity.ok(pagina);
     }
 
     @GetMapping("/{id}")
