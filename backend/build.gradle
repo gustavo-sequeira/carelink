@@ -26,6 +26,32 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.postgresql:postgresql:42.7.3'
+	implementation 'org.flywaydb:flyway-core:10.20.0'
+	implementation 'org.flywaydb:flyway-database-postgresql:10.20.0'
+
+	// Validação Jakarta (Bean Validation)
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
+	// Hibernate Validator (implementação)
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+
+	// Swagger/OpenAPI com springdoc-openapi
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
+	// Validação de CNPJ
+	implementation 'br.com.caelum.stella:caelum-stella-core:2.1.6'
+
+	// Teste unitário
+	implementation 'org.mockito:mockito-core:5.14.0'
+
+	// MapStruct
+	implementation 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+
+	// Security
+	implementation 'org.springframework.security:spring-security-crypto:6.2.3'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
