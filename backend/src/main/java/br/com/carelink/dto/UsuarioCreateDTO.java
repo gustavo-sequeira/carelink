@@ -25,6 +25,10 @@ public class UsuarioCreateDTO {
     @Size(max = 100)
     private String sobrenome;
 
+    @NotBlank(message = "Email é obrigatório")
+    @Size(max = 100)
+    private String email;
+    
     @CpfValido
     @NotBlank(message = "CPF é obrigatório")
     @Size(min = 11, max = 14) // Considerando com máscara

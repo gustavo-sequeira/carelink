@@ -28,6 +28,9 @@ public class Usuario {
     @Column(name = "sobrenome", nullable = false, length = 100)
     private String sobrenome;
 
+    @Column(name = "email", nullable = false, length = 100)
+    private String email;
+
     @Column(name = "login", nullable = false, length = 100)
     private String login;
 

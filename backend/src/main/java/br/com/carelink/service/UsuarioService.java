@@ -23,7 +23,15 @@ public class UsuarioService {
     private final PasswordEncoder passwordEncoder;
 
     public UsuarioCreateDTO criar(UsuarioCreateDTO dto) {
-        Usuario usuario = Usuario.builder().nome(dto.getNome()).sobrenome(dto.getSobrenome()).cpf(dto.getCpf()).login(dto.getLogin()).senha(passwordEncoder.encode(dto.getSenha())).empresa(dto.getEmpresa()).build();
+        Usuario usuario = Usuario.builder()
+                .nome(dto.getNome())
+                .sobrenome(dto.getSobrenome())
+                .email(dto.getEmail())
+                .cpf(dto.getCpf())
+                .login(dto.getLogin())
+                .senha(passwordEncoder.encode(dto.getSenha()))
+                .empresa(dto.getEmpresa())
+                .build();
 
         Usuario salvo = repository.save(usuario);
         return toCreateDTO(salvo);
@@ -54,6 +62,7 @@ public class UsuarioService {
 
         usuario.setNome(dto.getNome());
         usuario.setSobrenome(dto.getSobrenome());
+        usuario.setEmail(dto.getEmail());
         usuario.setCpf(dto.getCpf());
         usuario.setEmpresa(dto.getEmpresa());
         usuario.setLogin(dto.getLogin());
@@ -64,11 +73,28 @@ public class UsuarioService {
     }
 
     private UsuarioDTO toDTO(Usuario usuario) {
-        return UsuarioDTO.builder().id(usuario.getId()).empresa(usuario.getEmpresa()).nome(usuario.getNome()).sobrenome(usuario.getSobrenome()).cpf(usuario.getCpf()).login(usuario.getLogin()).build();
+        return UsuarioDTO.builder()
+                .id(usuario.getId())
+                .empresa(usuario.getEmpresa())
+                .nome(usuario.getNome())
+                .sobrenome(usuario.getSobrenome())
+                .email(usuario.getEmail())
+                .cpf(usuario.getCpf())
+                .login(usuario.getLogin())
+                .build();
     }
 
     private UsuarioCreateDTO toCreateDTO(Usuario usuario) {
-        return UsuarioCreateDTO.builder().id(usuario.getId()).empresa(usuario.getEmpresa()).nome(usuario.getNome()).sobrenome(usuario.getSobrenome()).cpf(usuario.getCpf()).login(usuario.getLogin()).senha(usuario.getSenha()).build();
+        return UsuarioCreateDTO.builder()
+                .id(usuario.getId())
+                .empresa(usuario.getEmpresa())
+                .nome(usuario.getNome())
+                .sobrenome(usuario.getSobrenome())
+                .email(usuario.getEmail())
+                .cpf(usuario.getCpf())
+                .login(usuario.getLogin())
+                .senha(usuario.getSenha())
+                .build();
     }
 }
 
