@@ -1,5 +1,6 @@
 package br.com.carelink.dto;
 
+import br.com.carelink.validator.CnpjValido;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -20,6 +21,7 @@ public class EmpresaDTO {
     @Size(max = 100)
     private String nomeFantasia;
 
+    @CnpjValido
     @NotBlank(message = "CNPJ é obrigatório")
     @Size(min = 14, max = 18) // Considerando com máscara
     private String cnpj;
