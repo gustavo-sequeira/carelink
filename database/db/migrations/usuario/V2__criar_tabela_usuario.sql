@@ -1,0 +1,16 @@
+
+CREATE TABLE usuario (
+	empresa_id integer NOT NULL,
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    sobrenome VARCHAR(100) NOT NULL,
+	login VARCHAR(100) NOT NULL,
+	senha VARCHAR(100) NOT NULL,
+    cpf VARCHAR(18) NOT NULL UNIQUE,
+    data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT fk_empresa
+        FOREIGN KEY (empresa_id)
+        REFERENCES empresa (id)
+        ON DELETE CASCADE
+);
+
