@@ -22,8 +22,8 @@ public class EmpresaController {
 
     @PostMapping
     public ResponseEntity<EmpresaDTO> criar(@Valid @RequestBody EmpresaDTO dto) {
-        EmpresaDTO criada = service.criar(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(criada);
+            EmpresaDTO criada = service.criar(dto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(criada);
     }
 
     @GetMapping
@@ -41,6 +41,12 @@ public class EmpresaController {
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         service.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EmpresaDTO> alterar(@PathVariable Long id, @Valid @RequestBody EmpresaDTO dto) {
+        EmpresaDTO alterada = service.alterar(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(alterada);
     }
 }
 

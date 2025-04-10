@@ -12,8 +12,13 @@ import java.util.Map;
 public class ExceptionHandlerController {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<?> handleNotFound(EntityNotFoundException ex) {
-        return ResponseEntity.status(404).body(Map.of("erro", ex.getMessage()));
+    public ResponseEntity<?> handleNotFound(EntityNotFoundException err) {
+        return ResponseEntity.status(404).body(Map.of("erro", err.getMessage()));
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException err) {
+        return ResponseEntity.status(400).body(err.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
