@@ -1,9 +1,11 @@
 package br.com.carelink.security;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
@@ -33,7 +35,11 @@ public class JWTUtil {
     }
 
     private Claims getClaims(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder()
+                .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)))
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
 
