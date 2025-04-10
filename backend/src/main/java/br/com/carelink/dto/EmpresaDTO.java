@@ -25,5 +25,7 @@ public class EmpresaDTO {
     @NotBlank(message = "CNPJ é obrigatório")
     @Size(min = 14, max = 18) // Considerando com máscara
     private String cnpj;
+
+
 }
 
