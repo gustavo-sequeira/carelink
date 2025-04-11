@@ -10,15 +10,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Configuration
 public class SecurityConfig {
 
     private final JWTAuthFilter jwtAuthFilter;
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     public SecurityConfig(JWTAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -41,5 +44,11 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+    }
+
+    private SecurityConfig() {
+        logger.info("Iniciando minhaFuncao com valor: {}", valor);
+        logger.debug("Debugando o valor: {}", valor);
+        logger.error("Exemplo de erro (apenas exemplo, sem exceção)");
     }
 }

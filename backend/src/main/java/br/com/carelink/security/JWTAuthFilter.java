@@ -21,6 +21,11 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     private final JWTUtil jwtUtil;
     private final UsuarioRepository usuarioRepository;
 
+    public JWTAuthFilter(JWTUtil jwtUtil, UsuarioRepository usuarioRepository) {
+        this.jwtUtil = jwtUtil;
+        this.usuarioRepository = usuarioRepository;
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 

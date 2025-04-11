@@ -48,6 +48,11 @@ dependencies {
 	// MapStruct
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 
+	// SLF4J
+	implementation 'org.slf4j:slf4j-api:2.0.16'
+	implementation 'org.slf4j:slf4j-simple:2.0.16'
+
+
 	// Security
 	//implementation 'org.springframework.security:spring-security-crypto:6.2.3'
 	//implementation 'org.springframework.security:spring-security-core:6.2.3'
