@@ -3,6 +3,7 @@ import logo from './assets/logo.png'
 import notificacao from './assets/notificacao.png'
 import perfil from './assets/perfil.png'
 import BotaoNavegacao from '../BotaoNavegacao'
+import './BarraNavegacao.css'
 
 const BarraNavegacao = () => {
     return(
