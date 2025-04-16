@@ -3,7 +3,21 @@
     display: flex;
     align-items: center;
     height: 60px;
-    background-color: #F2FBFC;
+}
+
+.navbar-custom {
+background-color: #F2FBFC;
+}
+
+.d-flex {
+    margin-left: auto;
+    display: flex;
+}
+
+.nomeempresa{
+    font-weight: bold;
+    font-size: 30px;
+    color: #04A7C3; 
 }
 
 .cl-navbar h1 {

@@ -8,6 +8,13 @@ import { useState } from 'react'
 import { Button, Container, Form, FormControl, Nav, Navbar } from 'react-bootstrap'
 
 import './BarraNavegacao.css'
+import http from '../../http'
+
+interface PropsModalCandastro {
+  aberta: boolean
+  aoFechar: () => void
+  aoEfetuarLogin: () => void
+}
 
 const BarraNavegacao = () => {
     const [email, setEmail] = useState('');
@@ -16,19 +23,36 @@ const BarraNavegacao = () => {
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log('Login:', email, senha);
-      // Aqui você pode chamar uma API ou tratar o login
+
+      const usuario = {
+        email,
+        senha
+    }
+
+      http.post('auth/login', usuario)
+      .then(resposta => {
+        
+         sessionStorage.setItem('token', resposta.data.access_token)
+         setEmail('')
+         setSenha('')
+      })
+      .catch(erro => {
+        console.log(erro.response.data)
+          if(erro?.response?.data?.message){
+              alert(erro.response.data.message)
+          } else {
+              alert('Aconteceu algo inesperado ao efetuar o seu login')
+          }
+      })     
+
     };
   
     return (
-      <Navbar bg="dark" variant="dark" expand="lg" color="#F2FBFC">
+      <Navbar className="navbar-custom" variant="dark" expand="lg" >
         <Container fluid>
-          <Navbar.Brand href="#">CareLink</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-login" />
+          <div className='nomeempresa' >CareLink</div>
           <Navbar.Collapse id="navbar-login">
-            <Nav className="me-auto">
-              <Nav.Link href="#">Home</Nav.Link>
-              <Nav.Link href="#">Sobre</Nav.Link>
-            </Nav>
+
             <Form className="d-flex" onSubmit={handleLogin}>
               <FormControl
                 type="email"
