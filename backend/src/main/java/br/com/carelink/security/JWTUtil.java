@@ -18,7 +18,12 @@ public class JWTUtil {
     private long expiration; // em ms
 
     public String generateToken(String email) {
-        return Jwts.builder().setSubject(email).setExpiration(new Date(System.currentTimeMillis() + expiration)).signWith(SignatureAlgorithm.HS512, secret).compact();
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
     }
 
     public String extractUsername(String token) {

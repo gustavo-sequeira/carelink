@@ -4,18 +4,22 @@ import notificacao from './assets/notificacao.png'
 import perfil from './assets/perfil.png'
 import BotaoNavegacao from '../BotaoNavegacao'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button, Container, Form, FormControl, Nav, Navbar } from 'react-bootstrap'
 
 import './BarraNavegacao.css'
 import http from '../../http'
+import MenuPerfilDropDown from '../MenuPerfilDropDown'
 
 const BarraNavegacao = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-
   const token = sessionStorage.getItem('token')
   const [usuarioEstaLogado, setUsuarioEstaLogado] = useState<boolean>(token != null)
+  const [showDropdown, setShowDropdown] = useState(false);
+  const toggleDropdown = () => {
+    setShowDropdown((prev) => !prev)
+  };
 
   const aoEfetuarLogin = () => {
     setUsuarioEstaLogado(true)
@@ -23,7 +27,7 @@ const BarraNavegacao = () => {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Login:', email, senha);
+
 
     const usuario = {
       email,
@@ -53,8 +57,6 @@ const BarraNavegacao = () => {
     <Navbar className="navbar-custom" variant="dark" expand="lg" >
       <Container fluid>
         <div className='nomeempresa' >CareLink</div>
-
-
         <ul className='acoes'>
           {!usuarioEstaLogado && (<>
             <Navbar.Collapse id="navbar-login">
@@ -80,7 +82,7 @@ const BarraNavegacao = () => {
               </Form>
             </Navbar.Collapse>
           </>)}
-          {usuarioEstaLogado && <>
+          {usuarioEstaLogado && <div className='botoesnavegacao'>
             <BotaoNavegacao
               texto=''
               textoAltSrc=''
@@ -90,8 +92,10 @@ const BarraNavegacao = () => {
               texto=''
               textoAltSrc=''
               imagemSrc={perfil}
+              onClick={toggleDropdown}
             />
-          </>}
+            <MenuPerfilDropDown show={showDropdown} />
+          </div>}
         </ul>
       </Container>
     </Navbar>
