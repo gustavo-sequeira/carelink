@@ -1,0 +1,11 @@
+.dropdown {
+  top: 25px;
+  right: 50px;
+}
+
+.dropdown-menu {
+  min-width: 250px;
+  right: 0;
+  left: auto;
+  ;
+}

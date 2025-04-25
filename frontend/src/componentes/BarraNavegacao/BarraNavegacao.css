@@ -6,7 +6,7 @@
 }
 
 .navbar-custom {
-background-color: #F2FBFC;
+    background-color: #F2FBFC;
 }
 
 .d-flex {
@@ -14,10 +14,10 @@ background-color: #F2FBFC;
     display: flex;
 }
 
-.nomeempresa{
+.nomeempresa {
     font-weight: bold;
     font-size: 30px;
-    color: #04A7C3; 
+    color: #04A7C3;
 }
 
 .cl-navbar h1 {
@@ -26,7 +26,7 @@ background-color: #F2FBFC;
 }
 
 .cl-navbar ul li {
-    
+
     display: inline-block;
     box-sizing: border-box;
     padding: 10px;
@@ -34,8 +34,11 @@ background-color: #F2FBFC;
     position: relative
 }
 
-.botoesnavegacao {
-    margin-left: auto;
+.acoes .botoesnavegacao {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    /* espaço entre ícones */
 }
 
 .cl-navbar .nomeempresa {
@@ -50,4 +53,3 @@ background-color: #F2FBFC;
     font-size: 20px;
     font-weight: 800;
 }
-

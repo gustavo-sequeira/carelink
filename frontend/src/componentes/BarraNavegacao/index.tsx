@@ -1,22 +1,26 @@
-import { Link } from 'react-router-dom'
-import logo from './assets/logo.png'
-import notificacao from './assets/notificacao.png'
-import perfil from './assets/perfil.png'
-import BotaoNavegacao from '../BotaoNavegacao'
-
+// bibliotecas
 import { useEffect, useRef, useState } from 'react'
-import { Button, Container, Form, FormControl, Nav, Navbar } from 'react-bootstrap'
-
-import './BarraNavegacao.css'
+import { Button, Container, Form, FormControl, Navbar } from 'react-bootstrap'
+// components
 import http from '../../http'
 import MenuPerfilDropDown from '../MenuPerfilDropDown'
+import BotaoNavegacao from '../BotaoNavegacao'
+// css
+import './BarraNavegacao.css'
+// imagens
+import notificacao from './assets/notificacao.png'
+import perfil from './assets/perfil.png'
 
 const BarraNavegacao = () => {
+  const token = sessionStorage.getItem('access_token')
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const token = sessionStorage.getItem('token')
   const [usuarioEstaLogado, setUsuarioEstaLogado] = useState<boolean>(token != null)
   const [showDropdown, setShowDropdown] = useState(false);
+
+
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev)
   };
@@ -28,7 +32,6 @@ const BarraNavegacao = () => {
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-
     const usuario = {
       email,
       senha
@@ -37,7 +40,7 @@ const BarraNavegacao = () => {
     http.post('auth/login', usuario)
       .then(resposta => {
 
-        sessionStorage.setItem('token', resposta.data.access_token)
+        sessionStorage.setItem('access_token', resposta.data.access_token)
         setEmail('')
         setSenha('')
         aoEfetuarLogin()
@@ -52,6 +55,19 @@ const BarraNavegacao = () => {
       })
 
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <Navbar className="navbar-custom" variant="dark" expand="lg" >
@@ -82,20 +98,23 @@ const BarraNavegacao = () => {
               </Form>
             </Navbar.Collapse>
           </>)}
-          {usuarioEstaLogado && <div className='botoesnavegacao'>
-            <BotaoNavegacao
-              texto=''
-              textoAltSrc=''
-              imagemSrc={notificacao}
-            />
-            <BotaoNavegacao
-              texto=''
-              textoAltSrc=''
-              imagemSrc={perfil}
-              onClick={toggleDropdown}
-            />
-            <MenuPerfilDropDown show={showDropdown} />
-          </div>}
+          {usuarioEstaLogado &&
+            <div className='botoesnavegacao'>
+              <BotaoNavegacao
+                texto=''
+                textoAltSrc=''
+                imagemSrc={notificacao}
+              />
+              <div ref={dropdownRef}>
+                <BotaoNavegacao
+                  texto=''
+                  textoAltSrc=''
+                  imagemSrc={perfil}
+                  onClick={toggleDropdown}
+                />
+                <MenuPerfilDropDown show={showDropdown} onClose={() => setShowDropdown(false)} />
+              </div>
+            </div>}
         </ul>
       </Container>
     </Navbar>

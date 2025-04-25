@@ -13,7 +13,7 @@ const BotaoNavegacao = ({ imagemSrc, texto, textoAltSrc, onClick }: BotaoNavegac
             onClick()
         }
     }
-    
+
     return (<button className="btn-nav" onClick={manipularClick}>
         <img src={imagemSrc} alt={textoAltSrc} />
         {texto}
