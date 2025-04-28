@@ -10,9 +10,10 @@ import './BarraNavegacao.css'
 // imagens
 import notificacao from './assets/notificacao.png'
 import perfil from './assets/perfil.png'
-import AlertMessage from '../AlertMessage/AlertMessage'
+import MensagemAlerta from '../MensagemAlerta/MensagemAlerta'
 
-const BarraNavegacao = () => {
+
+const BarraNavegacao = (BarraNavegacaoProps: { setUsuarioLogado: (arg0: boolean) => void }) => {
   const token = sessionStorage.getItem('access_token')
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -30,6 +31,7 @@ const BarraNavegacao = () => {
 
   const aoEfetuarLogin = () => {
     setUsuarioEstaLogado(true)
+    BarraNavegacaoProps.setUsuarioLogado(true)
   }
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,7 +44,6 @@ const BarraNavegacao = () => {
 
     http.post('auth/login', usuario)
       .then(resposta => {
-
         sessionStorage.setItem('access_token', resposta.data.access_token)
         setEmail('')
         setSenha('')
@@ -84,7 +85,7 @@ const BarraNavegacao = () => {
         background="static"
       >
         <Modal.Body>
-          <AlertMessage
+          <MensagemAlerta
             variant="danger"
             message={erroMessage}
             onClose={() => {

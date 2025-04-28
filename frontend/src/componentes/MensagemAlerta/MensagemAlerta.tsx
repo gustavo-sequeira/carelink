@@ -11,14 +11,14 @@ type AlertVariant =
   | 'light'
   | 'dark';
 
-interface AlertMessageProps {
+interface MensagemAlertaProps {
   variant?: AlertVariant;
   message: string;
   dismissible?: boolean;
   onClose?: () => void;
 }
 
-const AlertMessage: React.FC<AlertMessageProps> = ({
+const MensagemAlerta: React.FC<MensagemAlertaProps> = ({
   variant = 'info',
   message,
   dismissible = true,
@@ -39,4 +39,4 @@ const AlertMessage: React.FC<AlertMessageProps> = ({
   );
 };
 
-export default AlertMessage;
+export default MensagemAlerta;
