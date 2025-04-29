@@ -8,8 +8,8 @@ const DashboardConteudo: React.FC<DashboardContentProps> = ({ currentPage }) => 
   switch (currentPage) {
     case 'home':
       return <div>🏠 Home Content</div>;
-    case 'profile':
-      return <div>👤 Profile Content</div>;
+    case 'usuario':
+      return <div>👤 Usuário</div>;
     case 'settings':
       return <div>⚙️ Settings Content</div>;
     default:

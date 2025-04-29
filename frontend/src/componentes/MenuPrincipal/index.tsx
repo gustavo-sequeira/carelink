@@ -1,7 +1,7 @@
 //bibliotecas
 import React, { useState } from 'react';
 import { Collapse, Container, Navbar, Nav, NavItem, Button, Row, Col } from 'react-bootstrap';
-
+import './MenuPrincipal.css'
 interface MenuPrincipalProps {
     onMenuItemClick: (item: string) => void;
   }
@@ -14,8 +14,8 @@ const MenuPrincipal: React.FC<MenuPrincipalProps> = ({ onMenuItemClick }) => {
     const menuConfiguracaoAlternar = () => setMenuConfiguracaoAberto(!menuConfiguracaoAberto);
   
     return (
-      <Col xs={3} md={2} className="bg-dark text-white p-3" style={{ minHeight: '100vh' }}>
-        <Button onClick={menuCadastroAlternar} variant="secondary" className="w-100 mb-3">
+      <Col className="menu-bg" style={{ minHeight: '100vh' }}>
+        <Button onClick={menuCadastroAlternar} variant="outline-success" className="w-100 mb-1">
           Cadastros
         </Button>
   
@@ -23,17 +23,17 @@ const MenuPrincipal: React.FC<MenuPrincipalProps> = ({ onMenuItemClick }) => {
           <div>
             <Nav className="flex-column">
               <NavItem>
-                <Button variant="link" onClick={() => onMenuItemClick('home')} className="text-white">
+                <Button variant="link" onClick={() => onMenuItemClick('home')} className="it-text">
                   Home
                 </Button>
               </NavItem>
               <NavItem>
-                <Button variant="link" onClick={() => onMenuItemClick('profile')} className="text-white">
+                <Button variant="link" onClick={() => onMenuItemClick('usuario')} className="it-text">
                   Profile
                 </Button>
               </NavItem>
               <NavItem>
-                <Button variant="link" onClick={() => onMenuItemClick('settings')} className="text-white">
+                <Button variant="link" onClick={() => onMenuItemClick('settings')} className="it-text">
                   Settings
                 </Button>
               </NavItem>
@@ -41,7 +41,7 @@ const MenuPrincipal: React.FC<MenuPrincipalProps> = ({ onMenuItemClick }) => {
           </div>
         </Collapse>
 
-        <Button onClick={menuConfiguracaoAlternar} variant="secondary" className="w-100 mb-3">
+        <Button onClick={menuConfiguracaoAlternar} variant="outline-success" className="w-100 mb-1">
           Configuração
         </Button>
   
@@ -49,17 +49,17 @@ const MenuPrincipal: React.FC<MenuPrincipalProps> = ({ onMenuItemClick }) => {
           <div>
             <Nav className="flex-column">
               <NavItem>
-                <Button variant="link" onClick={() => onMenuItemClick('home')} className="text-white">
+                <Button variant="link" onClick={() => onMenuItemClick('home')} className="it-text">
                   Home
                 </Button>
               </NavItem>
               <NavItem>
-                <Button variant="link" onClick={() => onMenuItemClick('profile')} className="text-white">
-                  Profile
+                <Button variant="link" onClick={() => onMenuItemClick('usuario')} className="it-text">
+                  Usuário
                 </Button>
               </NavItem>
               <NavItem>
-                <Button variant="link" onClick={() => onMenuItemClick('settings')} className="text-white">
+                <Button variant="link" onClick={() => onMenuItemClick('settings')} className="it-text">
                   Settings
                 </Button>
               </NavItem>

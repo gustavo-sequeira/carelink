@@ -1,0 +1,10 @@
+.menu-bg {
+    background-color: #F2FBFC; /* Igual à navbar */
+    padding: 1rem;
+    height: 100vh; /* Para ocupar a altura da tela */
+
+}
+
+.menu-bg Button {
+    color: #0086a8;
+}

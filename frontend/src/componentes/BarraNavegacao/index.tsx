@@ -71,6 +71,7 @@ const BarraNavegacao = (BarraNavegacaoProps: { setUsuarioLogado: (arg0: boolean)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+
   }, []);
 
   return (
