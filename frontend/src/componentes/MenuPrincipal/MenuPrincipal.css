@@ -2,9 +2,22 @@
     background-color: #F2FBFC; /* Igual à navbar */
     padding: 1rem;
     height: 100vh; /* Para ocupar a altura da tela */
-
 }
 
 .menu-bg Button {
-    color: #0086a8;
+    background-color: #00a3c4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
 }
+
+.menu-bg Button:hover {
+    background-color: #0086a8;
+  }
+
+  .menu-bg Button:active {
+    background-color: #0b0d0e;
+  }
